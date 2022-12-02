@@ -25,3 +25,10 @@ const initializeDBAndServer = async () => {
 };
 
 initializeDBAndServer();
+
+app.get(__dirname, async (response, request) => {
+  const goodReadBooksList = `SELECT * FROM book ORDER BY book_id`;
+
+  const bookArray = await db.all(goodReadBooksList);
+  response.send(bookArray);
+});
